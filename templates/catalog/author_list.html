@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{#{% block content %}#}
+{#  <h1>Author List<a style="float: right" href="{% url 'catalog:author-create' %}">+</a></h1>#}
+{#  {% if author_list %}#}
+{#    <ul>#}
+{#      {% for author in author_list %}#}
+{#        <li><a href="{{author.get_absolute_url}}">{{ author.username }} {{ author.first_name }} {{ author.last_name }}</a></li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  {% endif %}#}
+{#{% endblock %}#}
+
+
+{% block content %}
+  <h1>Author List<a class="btn btn-secondary" style="float: right" href="{% url 'catalog:author-create' %}">+</a></h1>
+  {% if author_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Username</th>
+        <th>Pseudonym</th>
+      </tr>
+      {% for author in author_list %}
+        <tr>
+          <td>
+            <a href="{{ author.get_absolute_url }}">{{ author.id }}</a>
+          </td>
+          <td>
+            {{ author.first_name }} {{ author.last_name }}
+          </td>
+          <td>
+            {{ author.username }}
+          </td>
+          <td>
+            {{ author.pseudonym|default_if_none:"" }}
+          </td>
+        </tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endblock %}
+
+
+
+{#{% block content %}#}
+{#🔹 Відкриває блок контенту, який буде підставлений у base.html або інший батьківський шаблон.#}
+}
+{#<h1>Author List<a style="float: right" href="{% url 'catalog:author-create' %}">+</a></h1>#}
+{#🔹 Заголовок сторінки#}
+{#🔹 Додає кнопку + (праворуч), яка веде на сторінку створення автора (author-create).#}
+
+{#{% if author_list %}#}
+{#🔹 Перевіряє, чи author_list не порожній. Якщо список авторів є, виводимо таблицю.#}
+
+{#<table class="table">#}
+{#  <tr>#}
+{#    <th>ID</th>#}
+{#    <th>Full Name</th>#}
+{#    <th>Username</th>#}
+{#    <th>Pseudonym</th>#}
+{#  </tr>#}
+
+{#🔹 Створює HTML-таблицю зі стовпцями:#}
+
+{#ID#}
+{#Full Name (ім'я + прізвище)#}
+{#Username#}
+{#Pseudonym#}

@@ -1,0 +1,102 @@
+<!--{#{% extends "base.html" %}#}-->
+<!--{##}-->
+<!--{#{% block content %}#}-->
+<!--{#  <h1>Login</h1>#}-->
+<!--{#  {% if error %}#}-->
+<!--{#    <p style="color: red">{{ error }}</p>#}-->
+<!--{#  {% endif %}#}-->
+<!--{#  <form action="{% url "login" %}" method="post">#}-->
+<!--{#    {% csrf_token %}#}-->
+<!--{#    <label>Username:#}-->
+<!--{#      <input type="text" name="username">#}-->
+<!--{#    </label>#}-->
+<!--{#    <label>Password:#}-->
+<!--{#      <input type="password" name="password">#}-->
+<!--{#    </label>#}-->
+<!--{#    <br>#}-->
+<!--{#    <input type="submit" value="Submit">#}-->
+<!--{#  </form>#}-->
+<!--{#{% endblock %}#}-->
+
+
+<!--{#При відправки даних з цієї форми <form action="{% url "login" %}"></form> #}-->
+<!--{#дані будуть відправлені в нашу ф-цію login_view з файла views.py директорії registration#}-->
+<!--{#при відправленні даних методом "post", дані, які ми відправляємо, не відображаються в url,#}-->
+<!--{#тобто будуть відправленні в якості request body, а при відправці за допомогою HTTPS вони будуть також зашифровані #}-->
+<!--{#і зможуть бути розшифровані тільки на тому сервері, для якого вони призначені#}-->
+
+
+<!--{#Цей шаблон у форматі Django Template Language використовується для створення HTML-сторінки входу (логіна) в систему.#}-->
+<!--{##}-->
+<!--{#{% block content %}#}-->
+<!--{#Це початок блоку, який визначає вміст для вставки в базовий шаблон у місці {% block content %}.#}-->
+<!--{#У даному випадку це форма входу.#}-->
+<!--{##}-->
+<!--{#<h1>Login</h1>#}-->
+<!--{#Цей рядок задає заголовок сторінки — "Login".#}-->
+<!--{##}-->
+<!--{#<form action="{% url "login" %}" method="post">#}-->
+<!--{#action="{% url "login" %}" — Вказує, куди надсилається форма. Функція {% url %} #}-->
+<!--{#  генерує URL-адресу на основі імені маршруту. У цьому випадку використовується маршрут login.#}-->
+<!--{#method="post" — Вказує, що дані форми будуть відправлені методом POST, #}-->
+<!--{#  який зазвичай використовується для обробки конфіденційних даних.#}-->
+<!--{#  #}-->
+<!--{#{% csrf_token %}#}-->
+<!--{#Цей тег додає токен захисту від міжсайтових запитів підробки (CSRF), #}-->
+<!--{#  який необхідний для забезпечення безпеки форм у Django.  #}-->
+<!--{##}-->
+<!--{#Поля форми#}-->
+<!--{#  #}-->
+<!--{#<label>Username:#}-->
+<!--{#  <input type="text" name="username">#}-->
+<!--{#</label>#}-->
+<!--{#Поле вводу імені користувача:#}-->
+<!--{#<label> — описує поле вводу.#}-->
+<!--{#<input type="text" name="username"> — створює текстове поле для вводу імені користувача.#}-->
+<!--{#  #}-->
+<!--{#<label>Password:#}-->
+<!--{#  <input type="password" name="password">#}-->
+<!--{#</label>#}-->
+<!--{#Поле вводу пароля:#}-->
+<!--{#<input type="password" name="password"> — створює поле для вводу пароля. Символи пароля приховані під час введення.#}-->
+<!--{#  #}-->
+<!--{#7. Відправка форми#}-->
+<!--{##}-->
+<!--{#<input type="submit" value="Submit">#}-->
+<!--{#Це кнопка для відправлення форми. Після натискання користувач надсилає введені дані на сервер.#}-->
+<!--{#  #}-->
+<!--{#  Ця сторінка дозволяє користувачеві ввести ім'я та пароль для входу в систему.#}-->
+<!--{#  Дані передаються на сервер через маршрут login для обробки.#}-->
+
+
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>Login</h1>
+  {% if form.errors %}
+    <p style="color: red">Invalid credentials</p>
+  {% endif %}
+  <form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Submit">
+    <input type="hidden" name="next" value="{{ next }}">
+  </form>
+{% end block %}
+
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <h1>Login</h1>
+  {% if form.errors %}
+    <p style="color: red">Invalid credentials</p>
+  {% endif %}
+  <form action="{% url "login" %}" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <input class="btn btn-primary" type="submit" value="Submit">
+    <input type="hidden" name="next" value="{{ next }}">
+  </form>
+{% endblock %}

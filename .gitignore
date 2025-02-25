@@ -1,0 +1,17 @@
+venv/
+__pycache__/
+*.pyc
+
+# Бази даних
+db.sqlite3
+identifier.sqlite
+
+# IDE файли
+.idea/
+
+# Статичні файли Django
+staticfiles/
+media/
+static/
+.env
+

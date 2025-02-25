@@ -1,0 +1,52 @@
+{#{% extends "base.html" %}#}
+{#{% block content %}#}
+{#  <h1>Create Literary Format</h1>#}
+{#  <form action="" method="post" novalidate>#}
+{#    {% csrf_token %}#}
+{#    {{ form.as_p }}#}
+{#    <input type="submit" value="Submit">#}
+{#  </form>#}
+{#{% endblock %}#}
+
+{#Щоб відбулися зміни на сторинці потрібно додати до нашої форми бібліотеку crispy#}
+{#змінити з {{ form.as_p }} на {{ form|crispy}} та додати(загрузити {% load crispy_forms_filters %}) #}
+{#Тепер наша форма на сторінці змінилася#}
+{#<input class="btn btn-primary" type="submit" value="Submit"> - змінимо кнопку "Submit"#}
+
+{#{% extends "base.html" %}#}
+{#{% load crispy_forms_filters %}#}
+{#{% block content %}#}
+{#  <h1>Create Literary Format</h1>#}
+{#  <form action="" method="post" novalidate>#}
+{#    {% csrf_token %}#}
+{#    {{ form|crispy}}#}
+{#    <input class="btn btn-primary" type="submit" value="Submit">#}
+{#  </form>#}
+{#{% endblock %}#}
+
+
+{#Внесемо зміни на сторінку Literary Format List/#}
+
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+{% block content %}
+  <h1>{{ object|yesno:"Update, Create" }} Literary Format</h1>
+  <form action="" method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy}}
+    <input class="btn btn-primary" type="submit" value="Submit">
+  </form>
+{% endblock %}
+
+{#{{ object|yesno:"Update, Create" }}#}
+{#{{ }}: Це синтаксис Django для вставки значення змінної або результату фільтра в шаблон.#}
+{#object:#}
+{#Це змінна контексту, яка передається в шаблон. У випадку використання generic.CreateView або generic.UpdateView,#}
+{#ця змінна зазвичай відповідає об'єкту, над яким виконуються дії.#}
+{#Якщо це форма для створення нового об'єкта (CreateView), object буде None.#}
+{#Якщо це форма для оновлення існуючого об'єкта (UpdateView), object містить сам об'єкт.#}
+{#|yesno:"Update, Create":#}
+{#Це фільтр Django, який повертає одне з двох слів залежно від того, чи є значення змінної True або False.#}
+{#У цьому випадку:#}
+{#Якщо object існує (тобто це UpdateView), буде вставлено слово Update.#}
+{#Якщо object дорівнює None (тобто це CreateView), буде вставлено слово Create.#}

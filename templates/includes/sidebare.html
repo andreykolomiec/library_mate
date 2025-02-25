@@ -1,0 +1,231 @@
+{% load static %}
+{#<ul class="sidebar-nav">#}
+{#  {% if user.is_authenticated %}#}
+{#  <li>#}
+{#    User: {{ user.username }}#}
+{#  </li>#}
+{#  <li>#}
+{#      <a href="{% url 'logout' %}">Logout</a>#}
+{#    </li>#}
+{#  {% else %}#}
+{#    <li>#}
+{#      <a href="{% url 'login' %}">Login</a>#}
+{#    </li>#}
+{#  {% endif %}#}
+{#  <br>#}
+{#  <li>#}
+{#    <a href="{% url 'catalog:index' %}">Home</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "catalog:author-list" %}">All authors</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "catalog:book-list" %}">All books</a>#}
+{#  </li>#}
+{#  <li>#}
+{#    <a href="{% url "catalog:literary-format-list" %}">All literary formats</a>#}
+{#  </li>#}
+{#</ul>#}
+
+
+{#Опис:#}
+{#Розбір коду:#}
+{#1. <ul class="sidebar-nav">#}
+{#<ul> — тег, який створює невпорядкований список.#}
+{#class="sidebar-nav" — додає до списку CSS-клас sidebar-nav, щоб можна було стилізувати цей список окремо за допомогою CSS.#}
+{#2. <li>#}
+{#Це елемент списку (list item). У цьому випадку кожен <li> містить посилання <a>.#}
+{#Кількість <li> відповідає кількості пунктів у меню.#}
+{#3. <a>#}
+{#Тег <a> створює гіперпосилання. Атрибут href визначає адресу, на яку користувач буде перенаправлений після натискання на посилання.#}
+
+
+{#Цей фрагмент коду є шаблоном на мові шаблонів Django, що створює бічну навігаційну панель у веб-додатку.#}
+{##}
+{#Опис коду:#}
+{#<ul class="sidebar-nav">#}
+{##}
+{#Створюється ненумерований список (<ul>) з класом sidebar-nav.#}
+{#Клас використовується для стилізації навігаційного меню за допомогою CSS.#}
+{#<li> ... </li>#}
+{##}
+{#Кожен пункт списку представляє елемент навігаційного меню.#}
+{#<a href="{% url 'catalog:index' %}">Home</a>#}
+{##}
+{#Створює посилання на головну сторінку каталогу.#}
+{#{% url 'catalog:index' %} є Django-тегом, який будує URL за ім'ям маршруту catalog:index, визначеним у urls.py.#}
+{#Текст посилання: "Home".#}
+{#<a href="#">All authors</a>#}
+{##}
+{#Посилання на сторінку "All authors".#}
+{#href="#" є заглушкою (поки сторінка або URL не реалізовані).#}
+{#<a href="{% url "catalog:book-list" %}">All books</a>#}
+{##}
+{#Посилання на сторінку зі списком всіх книг.#}
+{#{% url "catalog:book-list" %} будує URL для маршруту з ім'ям catalog:book-list.#}
+{#<a href="{% url "catalog:literary-format-list" %}">All literary formats</a>#}
+{##}
+{#Посилання на сторінку зі списком літературних форматів (наприклад, роман, новела, поема).#}
+{#{% url "catalog:literary-format-list" %} генерує URL для маршруту catalog:literary-format-list.#}
+{#Закриваючий тег </ul>#}
+{##}
+{#Завершує ненумерований список.#}
+
+{#Підсумок:#}
+{#Цей код створює навігаційне меню, що дозволяє користувачу переходити між різними сторінками веб-застосунку:#}
+{##}
+{#Home – головна сторінка.#}
+{#All authors – сторінка авторів (поки не реалізована).#}
+{#All books – сторінка зі списком книг.#}
+{#All literary formats – сторінка зі списком літературних форматів.#}
+{#Django-тег {% url ... %} використовується для побудови динамічних посилань відповідно до маршруту, визначеного у urls.py#}
+
+{###################################################}
+
+{#Покращення templates#}
+
+{#<ul class="sidebar-nav list-group">#}
+{#  {% if user.is_authenticated %}#}
+{#  <li class="list-group-item">#}
+{#    User: {{ user.username }}#}
+{#  </li>#}
+{#  <li class="list-group-item">#}
+{#      <a href="{% url 'logout' %}">Logout</a>#}
+{#    </li>#}
+{#  {% else %}#}
+{#    <li class="list-group-item">#}
+{#      <a href="{% url 'login' %}">Login</a>#}
+{#    </li>#}
+{#  {% endif %}#}
+{#  <br>#}
+{#  <li class="list-group-item">#}
+{#    <a href="{% url 'catalog:index' %}">Home</a>#}
+{#  </li>#}
+{#  <li class="list-group-item">#}
+{#    <a href="{% url "catalog:author-list" %}">All authors</a>#}
+{#  </li>#}
+{#  <li class="list-group-item">#}
+{#    <a href="{% url "catalog:book-list" %}">All books</a>#}
+{#  </li>#}
+{#  <li class="list-group-item">#}
+{#    <a href="{% url "catalog:literary-format-list" %}">All literary formats</a>#}
+{#  </li>#}
+{#</ul>#}
+
+{#показує активну сторінку#}
+{#<ul class="sidebar-nav list-group">#}
+{#  {% if user.is_authenticated %}#}
+{#  <li class="list-group-item">#}
+{#    User: {{ user.username }}#}
+{#  </li>#}
+{#  <li class="list-group-item">#}
+{#      <a href="{% url 'logout' %}">Logout</a>#}
+{#    </li>#}
+{#  {% else %}#}
+{#    <li class="list-group-item">#}
+{#      <a href="{% url 'login' %}">Login</a>#}
+{#    </li>#}
+{#  {% endif %}#}
+{#  <br>#}
+{#  <li class="list-group-item {% if request.resolver_match.view_name == 'catalog:index' %}#}
+{#  active#}
+{#  {% endif %}">#}
+{#    <a href="{% url 'catalog:index' %}">Home</a>#}
+{#  </li>#}
+{#  <li class="list-group-item {% if request.resolver_match.view_name == 'catalog:author-list' %}#}
+{#  active#}
+{#  {% endif %}">#}
+{#    <a href="{% url "catalog:author-list" %}">All authors</a>#}
+{#  </li>#}
+{#  <li class="list-group-item {% if request.resolver_match.view_name == 'catalog:book-list' %}#}
+{#  active#}
+{#  {% endif %}">#}
+{#    <a href="{% url "catalog:book-list" %}">All books</a>#}
+{#  </li>#}
+{#  <li class="list-group-item {% if request.resolver_match.view_name == 'catalog:literary-format-list' %}#}
+{#  active#}
+{#  {% endif %}">#}
+{#    <a href="{% url "catalog:literary-format-list" %}">All literary formats</a>#}
+{#  </li>#}
+{#</ul>#}
+
+
+<!-- Navbar -->
+<div class="container position-sticky z-index-sticky top-0">
+  <div class="row">
+    <div class="col-12">
+      <nav
+        class="navbar navbar-expand-lg  blur blur-rounded top-0 z-index-fixed shadow position-absolute my-3 py-2 start-0 end-0 mx-4">
+        <div class="container-fluid px-0">
+          <a class="navbar-brand font-weight-bolder ms-sm-3"
+            href="/" rel="tooltip"
+            title="Designed and Coded by Creative Tim" data-placement="bottom">
+            Soft UI Design System
+          </a>
+          <button class="navbar-toggler shadow-none ms-2" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navigation" aria-controls="navigation" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon mt-2">
+              <span class="navbar-toggler-bar bar1"></span>
+              <span class="navbar-toggler-bar bar2"></span>
+              <span class="navbar-toggler-bar bar3"></span>
+            </span>
+          </button>
+          <div class="collapse navbar-collapse pt-3 pb-2 py-lg-0 w-100" id="navigation">
+            <ul class="navbar-nav navbar-nav-hover ms-lg-12 ps-lg-5 w-100">
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                  href="javascript:;" id="dropdownMenuPages" data-bs-toggle="dropdown" aria-expanded="false">
+                  Pages
+                  <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-1">
+                </a>
+              </li>
+
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                  href="javascript:;" id="dropdownMenuBlocks" data-bs-toggle="dropdown" aria-expanded="false">
+                  Blocks
+                  <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-1" />
+                </a>
+              </li>
+
+              <li class="nav-item dropdown dropdown-hover mx-2">
+                <a class="nav-link ps-2 d-flex justify-content-between cursor-pointer align-items-center"
+                  href="javascript:;" id="dropdownMenuDocs" data-bs-toggle="dropdown" aria-expanded="false">
+                  Docs
+                  <img src="{% static 'img/down-arrow-dark.svg' %}" alt="down-arrow" class="arrow ms-1">
+                </a>
+              </li>
+
+              {% if request.user.is_authenticated %}
+              <li class="nav-item ms-lg-auto">
+                <a class="nav-link nav-link-icon me-2"
+                  href="{% url 'logout' %}">
+                  <i class="fa fa-sign-out me-1"></i>
+                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Logout">Logout</p>
+                </a>
+              </li>
+              {% else %}
+              <li class="nav-item ms-lg-auto">
+                <a class="nav-link nav-link-icon me-2"
+                  href="{% url 'login' %}">
+                  <i class="fa fa-sign-in me-1"></i>
+                  <p class="d-inline text-sm z-index-1 font-weight-bold" data-bs-toggle="tooltip"
+                    data-bs-placement="bottom" title="Login">Login</p>
+                </a>
+              </li>
+              {% endif %}
+
+              <li class="nav-item my-auto ms-3 ms-lg-0">
+                <a href="https://appseed.us/product/soft-ui-design/django/" target="_blank"
+                  class="btn btn-sm  bg-gradient-primary  btn-round mb-0 me-1 mt-2 mt-md-0">Download</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+    </div>
+  </div>
+</div>

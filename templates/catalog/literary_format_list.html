@@ -1,0 +1,121 @@
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>Literary Format List<a style="float: right" href="{% url 'catalog:literary-format-create' %}">+</a></h1>#}
+{#  #}
+{#  {% if literary_format_list %}#}
+{#    <ul>#}
+{#      {% for literary_format in literary_format_list %}#}
+{#        <li>{{literary_format.name}}</li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  {% else %}#}
+{#    <p>There are no Literary formats in Library</p>#}
+{#  {% endif %}#}
+{#{% endblock %}#}
+
+
+{#{% for literary_format in literary_format_list %} - ітеруємся через цикл for по всьому списку literary_format_list#}
+{#та виводимо кожний формат (literary_format) на нашу сторінку#}
+
+{#Додаємо умову, що якщо ми маємо літер.формати,#}
+{#то мибудемо їх виводити за доп. циклу for#}
+
+{#{% else %} - якщо literary_format_list немає, то виводимо текст:#}
+{#There are no Literary formats in Library#}
+
+{#{% for %}, {% if %}, {% else %} - це деякі django-шаблонізатори#}
+
+
+
+{#Для спрощення коду замість {% if literary_format_list %} та {% else %}#}
+{#можна використати {% empty %} - і матимемо таки же результат (Дивитись нижче)#}
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>Literary Format List</h1>#}
+{#  <ul>#}
+{#    {% for literary_format in literary_format_list %}#}
+{#      <li>{{literary_format.name}}</li>#}
+{#    {% empty %}#}
+{#      <p>There are no Literary formats in Library</p>#}
+{#    {% endfor %}#}
+{#  </ul>#}
+{#{% endblock %}#}
+
+
+{#<a style="float: right" href="{% url 'catalog:literary-format-create' %}">+</a>#}
+{##}
+{#<a>: Це тег посилання, який вказує на URL, що веде до сторінки створення нового літературного формату.#}
+{#style="float: right": Використовується для CSS-оформлення, щоб посилання відображалося в правій частині рядка.#}
+{#  Це робить інтерфейс більш структурованим.#}
+{#href="{% url 'catalog:literary-format-create' %}": Django-шаблонна конструкція {% url %} генерує URL #}
+{#  на основі іменованого маршруту.#}
+{#У цьому випадку, вона генерує посилання для маршруту з ім'ям "catalog:literary-format-create".#}
+{#Ім'я маршруту визначене у вашому файлі urls.py:#}
+{#python#}
+{#Копировать код#}
+{#path("literary-formats/create/", LiteraryFormatCreateView.as_view(), name="literary-format-create"),#}
+{#>+</a>: Текст посилання. У цьому випадку це символ "+", який зазвичай використовується#}
+{#для позначення створення нового запису.#}
+
+{############################################################}
+
+{#Спосіб поєднання наших форм із bootstrap(бутстрап) #}
+{#для того, щоб використовувати bootstrap разом з Django-формами #}
+{#ми використовуємо окрему бібліотеку django-crispy-forms, #}
+{#ось посилання:   https://django-crispy-forms.readthedocs.io/en/latest/index.html #}
+
+{#{% extends "base.html" %}#}
+{##}
+{#{% block content %}#}
+{#  <h1>Literary Format List<a style="float: right" href="{% url 'catalog:literary-format-create' %}">+</a></h1>#}
+{#  #}
+{#  {% if literary_format_list %}#}
+{#    <ul>#}
+{#      {% for literary_format in literary_format_list %}#}
+{#        <li>{{literary_format.name}}</li>#}
+{#      {% endfor %}#}
+{#    </ul>#}
+{#  {% else %}#}
+{#    <p>There are no Literary formats in Library</p>#}
+{#  {% endif %}#}
+{#{% endblock %}#}
+
+{#Відредагуємо наш код, щоб прямо на цій сторінці було зручно видаляти литературні формати#}
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Literary Format List<a class="btn btn-secondary" style="float: right" href="{% url 'catalog:literary-format-create' %}">+</a></h1>
+  
+  {% if literary_format_list %}
+    <table class="table">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      {% for literary_format in literary_format_list %}
+        <tr>
+          <td>
+            {{ literary_format.id }}
+          </td>
+          <td>
+            {{ literary_format.name }}
+          </td>
+          <td>
+            <a href="{% url 'catalog:literary-format-update' pk=literary_format.id %}">UPDATE</a>
+          </td>
+          <td>
+            <a href="{% url 'catalog:literary-format-delete' pk=literary_format.id %}">DELETE</a>
+          </td>
+        </tr>
+      {% endfor %}  
+    </table>
+  {% else %}
+    <p>There are no Literary formats in Library</p>
+  {% endif %}
+{% endblock %}
