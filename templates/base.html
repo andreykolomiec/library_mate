@@ -1,5 +1,5 @@
 {% load static %}
-{#<html>#}
+{#<html lang="en">#}
 {#<h1>Welcome to the Greatest Library!</h1>#}
 {#<h3>Library content:</h3>#}
 {#<ul>#}
@@ -8,11 +8,85 @@
 {#    <li>Num literary formats: {{ num_literary_formats }}</li>#}
 {#</ul>#}
 {#</html>#}
+{##}
+{##}
 
 
-{# {{ num_books }} - Django-шаблонізатор (Django Template Language, DTL) дозволяє створювати HTML-шаблони,#}
-{#які динамічно наповнюються даними, переданими з бекенда.#}
+{#<!DOCTYPE "html">#}
+{#<html lang="en">#}
+{#<head>#}
+{#    {% block title %}#}
+{#        <title>Library</title>#}
+{#    {% endblock %}#}
+{#    <meta charset="utf-8">#}
+{#    <meta name="viewport" content="width=device-width, initial-scale=1">#}
+{#    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">#}
+{#</head>#}
+{#<body>#}
+{#<div class="container-fluid">#}
+{#    <div class="row">#}
+{#        <div class="col-sm-3">#}
+{#            {% block sidebar %}#}
+{#                <ul>#}
+{#                    <li>#}
+{#                        <a href="{% url 'catalog:index' %}">Home</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#">All authors</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#">All books</a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="#">All literary formats</a>#}
+{#                    </li>#}
+{#                </ul>#}
+{#            {% endblock %}#}
+{##}
+{#        </div>#}
+{#        <div class="col-sm-9">#}
+{#            {% block content %}#}
+{##}
+{#            {% endblock %}#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</div>#}
+{##}
+{#</body>#}
+{##}
+{#</html>#}
 
-{## У прикладі {{ num_books }} — це синтаксис для відображення значення змінної num_books у шаблоні. #}
-{## Через подвійні фігурні дужки ({{ }}) можна виводити значення змінних, переданих із контексту.#}
-}
+<!DOCTYPE "html">
+<html lang="en">
+<head>
+  {% block title %}
+    <title>Library</title>
+  {% endblock %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3">
+      {% block sidebar %}
+        {% include "includes/sidebare.html" %}
+      {% endblock %}
+
+    </div>
+    <div class="col-sm-9">
+      {% block content %}
+
+      {% endblock %}
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>

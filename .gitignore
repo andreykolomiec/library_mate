@@ -3,14 +3,13 @@ __pycache__/
 *.pyc
 
 # Бази даних
-db.sqlite3
+db_bu1.sqlite3
 identifier.sqlite
 
 # IDE файли
 .idea/
 
 # Статичні файли Django
-staticfiles/
 media/
 static/
 .env
